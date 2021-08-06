@@ -1,10 +1,11 @@
-const { resolve } = require('path');
-const readPkg = require('read-pkg');
 const debug = require('debug')('semantic-release:monorepo');
 
-const logPluginVersion = type => plugin => async (pluginConfig, config) => {
+const logPluginVersion = (type, getProjectVersion) => plugin => async (
+  pluginConfig,
+  config
+) => {
   if (config.options.debug) {
-    const { version } = await readPkg(resolve(__dirname, '../'));
+    const version = await getProjectVersion();
     debug('Running %o version %o', type, version);
   }
 

@@ -1,4 +1,5 @@
 const { compose, composeP, lensProp } = require('ramda');
+
 const { overA } = require('./lens-utils');
 
 const commits = lensProp('commits');

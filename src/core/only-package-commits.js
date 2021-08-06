@@ -1,23 +1,12 @@
-const { identity, memoizeWith, pipeP } = require('ramda');
-const pkgUp = require('pkg-up');
-const readPkg = require('read-pkg');
-const path = require('path');
-const pLimit = require('p-limit');
 const debug = require('debug')('semantic-release:monorepo');
-const { getCommitFiles, getRoot } = require('./git-utils');
+const pLimit = require('p-limit');
+const path = require('path');
+const { identity, memoizeWith, pipeP } = require('ramda');
+
+const { getCommitFiles, getRelativePath } = require('./git-utils');
 const { mapCommits } = require('./options-transforms');
 
 const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
-
-/**
- * Get the normalized PACKAGE root path, relative to the git PROJECT root.
- */
-const getPackagePath = async () => {
-  const packagePath = await pkgUp();
-  const gitRoot = await getRoot();
-
-  return path.relative(gitRoot, path.resolve(packagePath, '..'));
-};
 
 const withFiles = async commits => {
   const limit = pLimit(Number(process.env.SRM_MAX_THREADS) || 500);
@@ -31,8 +20,8 @@ const withFiles = async commits => {
   );
 };
 
-const onlyPackageCommits = async commits => {
-  const packagePath = await getPackagePath();
+const onlyPackageCommits = getProjectRoot => async commits => {
+  const packagePath = await getRelativePath(await getProjectRoot());
   debug('Filter commits by package path: "%s"', packagePath);
   const commitsWithFiles = await withFiles(commits);
   // Convert package root path into segments - one for each folder
@@ -67,8 +56,10 @@ const tapA = fn => async x => {
   return x;
 };
 
-const logFilteredCommitCount = logger => async ({ commits }) => {
-  const { name } = await readPkg();
+const logFilteredCommitCount = getProjectName => logger => async ({
+  commits,
+}) => {
+  const name = await getProjectName();
 
   logger.log(
     'Found %s commits for package %s since last release',
@@ -77,14 +68,17 @@ const logFilteredCommitCount = logger => async ({ commits }) => {
   );
 };
 
-const withOnlyPackageCommits = plugin => async (pluginConfig, config) => {
+const withOnlyPackageCommits = (
+  getProjectRoot,
+  getProjectName
+) => plugin => async (pluginConfig, config) => {
   const { logger } = config;
 
   return plugin(
     pluginConfig,
     await pipeP(
-      mapCommits(onlyPackageCommits),
-      tapA(logFilteredCommitCount(logger))
+      mapCommits(onlyPackageCommits(getProjectRoot)),
+      tapA(logFilteredCommitCount(getProjectName)(logger))
     )(config)
   );
 };

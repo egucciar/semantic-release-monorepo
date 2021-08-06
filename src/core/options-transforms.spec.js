@@ -1,9 +1,4 @@
-const {
-  mapNextReleaseVersion,
-  mapLastReleaseVersionToLastReleaseGitTag,
-  mapNextReleaseVersionToNextReleaseGitTag,
-  mapCommits,
-} = require('./options-transforms');
+const { mapNextReleaseVersion, mapCommits } = require('./options-transforms');
 
 const OPTIONS = {
   commits: [1, 2, 3, 4],
@@ -23,7 +18,7 @@ describe('semantic-release plugin options transforms', () => {
     it('allows mapping the "commits" option', async () => {
       const fn = commits => commits.filter(even);
 
-      expect(await mapCommits(fn)(OPTIONS)).toEqual({
+      await expect(mapCommits(fn)(OPTIONS)).resolves.toEqual({
         ...OPTIONS,
         commits: [2, 4],
       });
@@ -32,7 +27,7 @@ describe('semantic-release plugin options transforms', () => {
 
   describe('#mapNextReleaseVersion', () => {
     it('maps the nextRelease.version option', async () => {
-      expect(await mapNextReleaseVersion(toTag)(OPTIONS)).toEqual({
+      await expect(mapNextReleaseVersion(toTag)(OPTIONS)).resolves.toEqual({
         ...OPTIONS,
         nextRelease: {
           version: 'tag-4.5.6',
