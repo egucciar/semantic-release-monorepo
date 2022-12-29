@@ -1,8 +1,8 @@
-const readPkg = require('read-pkg');
 const { compose } = require('ramda');
 const withOnlyPackageCommits = require('./only-package-commits');
 const versionToGitTag = require('./version-to-git-tag');
 const logPluginVersion = require('./log-plugin-version');
+const { getPackageInfoSync } = require('./package-info');
 const { wrapStep } = require('semantic-release-plugin-decorators');
 
 const {
@@ -59,5 +59,5 @@ module.exports = {
   generateNotes,
   success,
   fail,
-  tagFormat: readPkg.sync().name + '-v${version}',
+  tagFormat: getPackageInfoSync().name + '-v${version}',
 };

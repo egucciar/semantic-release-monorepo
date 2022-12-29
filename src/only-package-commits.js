@@ -1,10 +1,10 @@
 const { identity, memoizeWith, pipeP } = require('ramda');
 const pkgUp = require('pkg-up');
-const readPkg = require('read-pkg');
 const path = require('path');
 const pLimit = require('p-limit');
 const debug = require('debug')('semantic-release:monorepo');
 const { getCommitFiles, getRoot } = require('./git-utils');
+const { getPackageInfo } = require('./package-info');
 const { mapCommits } = require('./options-transforms');
 
 const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
@@ -13,7 +13,7 @@ const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
  * Get the normalized PACKAGE root path, relative to the git PROJECT root.
  */
 const getPackagePath = async () => {
-  const packagePath = await pkgUp();
+  const packagePath = await pkgUp() || './package.json';
   const gitRoot = await getRoot();
 
   return path.relative(gitRoot, path.resolve(packagePath, '..'));
@@ -68,7 +68,7 @@ const tapA = fn => async x => {
 };
 
 const logFilteredCommitCount = logger => async ({ commits }) => {
-  const { name } = await readPkg();
+  const { name } = await getPackageInfo();
 
   logger.log(
     'Found %s commits for package %s since last release',
