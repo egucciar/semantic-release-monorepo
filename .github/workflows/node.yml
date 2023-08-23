@@ -1,0 +1,38 @@
+name: Node.js CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'yarn'
+      - name: Set dummy git user credentials
+        run: git config --global user.email some@example.com && git config --global user.name "Some Example"
+      - name: Install dependencies
+        run: yarn --immutable
+      - run: yarn test
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'yarn'
+      - run: npx semantic-release-github-pr --debug
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release --debug
