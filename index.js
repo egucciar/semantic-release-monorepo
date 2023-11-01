@@ -7,7 +7,7 @@ import {
   mapNextReleaseVersion,
   withOptionsTransforms,
 } from './src/options-transforms.js';
-const { wrapStep } = await import('semantic-release-plugin-decorators');
+import wrapStep from './src/wrapStep.js';
 
 const analyzeCommits = wrapStep(
   'analyzeCommits',

@@ -29,7 +29,6 @@
     "pkg-up": "4.0.0",
     "ramda": "0.27.2",
     "read-pkg": "8.1.0",
-    "semantic-release-plugin-decorators": "3.0.1",
     "tempy": "3.1.0"
   },
   "devDependencies": {

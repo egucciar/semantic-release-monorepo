@@ -4916,22 +4916,12 @@ __metadata:
     ramda: "npm:0.27.2"
     read-pkg: "npm:8.1.0"
     semantic-release: "patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch"
-    semantic-release-plugin-decorators: "npm:3.0.1"
     tempy: "npm:3.1.0"
     vitest: "npm:0.34.6"
   peerDependencies:
     semantic-release: ">=22"
   languageName: unknown
   linkType: soft
-
-"semantic-release-plugin-decorators@npm:3.0.1":
-  version: 3.0.1
-  resolution: "semantic-release-plugin-decorators@npm:3.0.1"
-  peerDependencies:
-    semantic-release: ">=11"
-  checksum: 4957824f4dd51fd1e93c818d85268954f528599253055a4d1e11aa6d0a9754d30df510ceb16afe519975293267ef13945ead7337b877d35a0bdc392411c28e55
-  languageName: node
-  linkType: hard
 
 "semantic-release@npm:22.0.6":
   version: 22.0.6
