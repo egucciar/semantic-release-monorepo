@@ -1,6 +1,6 @@
 name: Node.js CI
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   build:
@@ -22,3 +22,9 @@ jobs:
       run: yarn install
     - name: Run tests
       run: yarn test
+    - name: Run semantic-release in dry run
+      if: github.event_name == 'push'
+      id: dry-release
+      run: unset GITHUB_ACTIONS && yarn workspaces foreach -W --no-private --topological-dev run semantic-release --dry-run --no-ci --branches ${HEAD_REF}
+      env:
+          HEAD_REF: ${{ github.head_ref }}

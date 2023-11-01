@@ -1,6 +1,6 @@
 {
   "name": "semantic-release-monorepo",
-  "version": "0.0.0-development",
+  "version": "1.0.7",
   "description": "Plugins for `semantic-release` allowing it to be used with a monorepo.",
   "main": "index.js",
   "type": "module",
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "semantic-release": ">=15.11.x"
+    "semantic-release": ">=22"
   },
   "dependencies": {
     "debug": "4.3.4",
@@ -38,7 +38,7 @@
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1",
-    "semantic-release": "22.0.6",
+    "semantic-release": "github:dominykas/semantic-release#support-extends-mjs",
     "vitest": "0.34.6"
   },
   "husky": {
