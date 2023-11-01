@@ -55,6 +55,4 @@ const fail = wrapStep(
 
 const tagFormat = `${readPackageSync().name}-v\${version}`;
 
-const config = { analyzeCommits, generateNotes, success, fail, tagFormat };
-
-export default config;
+module.exports = { analyzeCommits, generateNotes, success, fail, tagFormat };

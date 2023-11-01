@@ -5454,9 +5454,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release-monorepo-esm@workspace:.":
+"semantic-release-monorepo@workspace:.":
   version: 0.0.0-use.local
-  resolution: "semantic-release-monorepo-esm@workspace:."
+  resolution: "semantic-release-monorepo@workspace:."
   dependencies:
     "@semantic-release/changelog": "npm:^6.0.3"
     "@semantic-release/exec": "npm:^6.0.3"
