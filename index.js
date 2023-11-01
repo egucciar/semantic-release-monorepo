@@ -1,4 +1,4 @@
-import { sync } from 'read-pkg';
+import { readPackageSync } from 'read-pkg';
 import { compose } from 'ramda';
 import { withOnlyPackageCommits } from './src/only-package-commits.js';
 import versionToGitTag from './src/version-to-git-tag.js';
@@ -53,6 +53,6 @@ const fail = wrapStep(
   }
 );
 
-const tagFormat = `${sync().name}-v\${version}`;
+const tagFormat = `${readPackageSync().name}-v\${version}`;
 
 export { analyzeCommits, generateNotes, success, fail, tagFormat };
