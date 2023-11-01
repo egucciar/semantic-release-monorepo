@@ -1,11 +1,11 @@
 import { identity, memoizeWith, pipeP } from 'ramda';
 import { pkgUp } from 'pkg-up';
-import { readPkg } from 'read-pkg';
+import { readPackage } from 'read-pkg';
 import { relative, resolve, sep, normalize } from 'path';
 import pLimit from 'p-limit';
 import { createRequire } from 'node:module';
-import { getCommitFiles, getRoot } from './git-utils';
-import { mapCommits } from './options-transforms';
+import { getCommitFiles, getRoot } from './git-utils.js';
+import { mapCommits } from './options-transforms.js';
 
 const newRequire = createRequire(import.meta.url);
 const debug = newRequire('debug')('semantic-release:monorepo');
@@ -70,7 +70,7 @@ const tapA = fn => async x => {
 };
 
 const logFilteredCommitCount = logger => async ({ commits }) => {
-  const { name } = await readPkg();
+  const { name } = await readPackage();
 
   logger.log(
     'Found %s commits for package %s since last release',

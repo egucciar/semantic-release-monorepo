@@ -1,4 +1,4 @@
-import versionToGitTag from './version-to-git-tag';
+import versionToGitTag from './version-to-git-tag.js';
 import { describe, it, expect } from 'vitest';
 
 describe('#versionToGitTag', () => {

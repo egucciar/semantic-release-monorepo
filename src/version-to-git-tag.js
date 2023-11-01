@@ -1,10 +1,10 @@
-import { readPkg } from 'read-pkg';
+import { readPackage } from 'read-pkg';
 
 export default async function(version) {
   if (!version) {
     return null;
   }
 
-  const { name } = await readPkg();
+  const { name } = await readPackage();
   return `${name}-v${version}`;
 }

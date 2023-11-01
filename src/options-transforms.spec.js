@@ -1,4 +1,4 @@
-import { mapNextReleaseVersion, mapCommits } from './options-transforms';
+import { mapNextReleaseVersion, mapCommits } from './options-transforms.js';
 import { describe, it, expect } from 'vitest';
 
 const OPTIONS = {

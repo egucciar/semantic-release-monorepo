@@ -1,5 +1,5 @@
-import { gitCommitsWithFiles, initGitRepo } from './git-utils';
-import { onlyPackageCommits, withFiles } from './only-package-commits';
+import { gitCommitsWithFiles, initGitRepo } from './git-utils.js';
+import { onlyPackageCommits, withFiles } from './only-package-commits.js';
 import { join } from 'path';
 import { describe, it, expect } from 'vitest';
 async function getCommitWithFileFromMessage(commits, message) {

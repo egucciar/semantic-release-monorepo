@@ -1,14 +1,13 @@
 import { sync } from 'read-pkg';
 import { compose } from 'ramda';
-import { withOnlyPackageCommits } from './src/only-package-commits';
-import versionToGitTag from './src/version-to-git-tag';
-import logPluginVersion from './src/log-plugin-version';
+import { withOnlyPackageCommits } from './src/only-package-commits.js';
+import versionToGitTag from './src/version-to-git-tag.js';
+import logPluginVersion from './src/log-plugin-version.js';
 import { wrapStep } from 'semantic-release-plugin-decorators';
-
 import {
   mapNextReleaseVersion,
   withOptionsTransforms,
-} from './src/options-transforms';
+} from './src/options-transforms.js';
 
 const analyzeCommits = wrapStep(
   'analyzeCommits',
