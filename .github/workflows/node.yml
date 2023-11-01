@@ -24,9 +24,10 @@ jobs:
       run: |
         git config --global user.email "user@example.com"
         git config --global user.name "Example User"
-
     - name: Run tests
       run: yarn test
+    - name: Build
+      run: yarn build
     - name: Run semantic-release in dry run
       if: github.event_name == 'push'
       id: dry-release

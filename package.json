@@ -11,13 +11,14 @@
     ".": {
       "node": "./dist/index.js",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     }
   },
   "scripts": {
     "format": "prettier --write --single-quote --trailing-comma es5",
     "format:all": "yarn format \"./**/*.js\"",
-    "test": "vitest --no-threads"
+    "test": "vitest --no-threads",
+    "build": "tsup"
   },
   "license": "MIT",
   "peerDependencies": {
