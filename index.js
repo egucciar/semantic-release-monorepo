@@ -3,11 +3,14 @@ import { compose } from 'ramda';
 import { withOnlyPackageCommits } from './src/only-package-commits.js';
 import versionToGitTag from './src/version-to-git-tag.js';
 import logPluginVersion from './src/log-plugin-version.js';
-import { wrapStep } from 'semantic-release-plugin-decorators';
 import {
   mapNextReleaseVersion,
   withOptionsTransforms,
 } from './src/options-transforms.js';
+import { createRequire } from 'node:module';
+
+const newRequire = createRequire(import.meta.url);
+const { wrapStep } = newRequire('semantic-release-plugin-decorators');
 
 const analyzeCommits = wrapStep(
   'analyzeCommits',
