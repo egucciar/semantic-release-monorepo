@@ -38,7 +38,7 @@
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1",
-    "semantic-release": "github:dominykas/semantic-release#support-extends-mjs",
+    "semantic-release": "patch:semantic-release@https%3A//github.com/dominykas/semantic-release.git%23commit=43ba48699f0b9b4aa26b6c4298daddece461c2dd#~/.yarn/patches/semantic-release-https-2f12251d80.patch",
     "vitest": "0.34.6"
   },
   "husky": {
