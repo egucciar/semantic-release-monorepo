@@ -38,7 +38,7 @@
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1",
-    "semantic-release": "patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch",
+    "semantic-release": "patch:semantic-release@patch%3Asemantic-release@npm%253A22.0.6%23~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch%3A%3Aversion=22.0.6&hash=94e183#~/.yarn/patches/semantic-release-patch-8951e5c7de.patch",
     "vitest": "0.34.6"
   },
   "husky": {
