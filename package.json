@@ -33,6 +33,10 @@
     "tempy": "3.1.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.1",
     "@types/git-log-parser": "^1.2.2",
     "@types/ramda": "0.27.66",
     "husky": "4.2.1",
