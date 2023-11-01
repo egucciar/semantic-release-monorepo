@@ -32,4 +32,5 @@ jobs:
       id: dry-release
       run: unset GITHUB_ACTIONS && yarn run semantic-release --dry-run --no-ci --branches ${REF_NAME}
       env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REF_NAME: ${{ github.ref_name }}
