@@ -1,5 +1,5 @@
 module.exports = {
-  extends: './dist/index.cjs',
+  extends: './dist/index.js',
   branches: ['master'],
   plugins: [
     '@semantic-release/changelog',
