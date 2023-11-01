@@ -1,6 +1,6 @@
 {
   "name": "semantic-release-monorepo",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Plugins for `semantic-release` allowing it to be used with a monorepo.",
   "main": "index.js",
   "type": "module",
@@ -38,7 +38,7 @@
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1",
-    "semantic-release": "patch:semantic-release@https%3A//github.com/dominykas/semantic-release.git%23commit=43ba48699f0b9b4aa26b6c4298daddece461c2dd#~/.yarn/patches/semantic-release-https-2f12251d80.patch",
+    "semantic-release": "patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch",
     "vitest": "0.34.6"
   },
   "husky": {
