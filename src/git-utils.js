@@ -2,7 +2,7 @@ import { execa } from 'execa';
 import { pipeP, split } from 'ramda';
 import { outputFile } from 'fs-extra';
 import { join } from 'path';
-import { temporaryDirectory } from 'tempy';
+import { directory } from 'tempy';
 import fileUrl from 'file-url';
 import { fields, parse } from 'git-log-parser';
 import pEachSeries from 'p-each-series';
@@ -70,7 +70,7 @@ const gitCommitsWithFiles = async commits => {
  * @return {{cwd: string, repositoryUrl: string}} The path of the repository
  */
 const initGit = async withRemote => {
-  const cwd = temporaryDirectory();
+  const cwd = directory();
   const args = withRemote
     ? ['--bare', '--initial-branch=master']
     : ['--initial-branch=master'];

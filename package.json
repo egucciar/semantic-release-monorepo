@@ -2,12 +2,17 @@
   "name": "semantic-release-monorepo",
   "version": "7.0.5",
   "description": "Plugins for `semantic-release` allowing it to be used with a monorepo.",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "files": [
-    "src",
-    "index.js"
+    "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "format": "prettier --write --single-quote --trailing-comma es5",
     "format:all": "yarn format \"./**/*.js\"",
@@ -17,20 +22,6 @@
   "peerDependencies": {
     "semantic-release": ">=22"
   },
-  "dependencies": {
-    "debug": "4.3.4",
-    "execa": "8.0.1",
-    "file-url": "4.0.0",
-    "fs-extra": "11.1.1",
-    "get-stream": "6.0.1",
-    "git-log-parser": "1.2.0",
-    "p-each-series": "3.0.0",
-    "p-limit": "4.0.0",
-    "pkg-up": "4.0.0",
-    "ramda": "0.27.2",
-    "read-pkg": "8.1.0",
-    "tempy": "3.1.0"
-  },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
@@ -38,10 +29,23 @@
     "@semantic-release/github": "^9.2.1",
     "@types/git-log-parser": "^1.2.2",
     "@types/ramda": "0.27.66",
+    "debug": "4.3.4",
+    "execa": "8.0.1",
+    "file-url": "4.0.0",
+    "fs-extra": "11.1.1",
+    "get-stream": "6.0.1",
+    "git-log-parser": "1.2.0",
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
+    "p-each-series": "3.0.0",
+    "p-limit": "4.0.0",
+    "pkg-up": "4.0.0",
     "prettier": "1.19.1",
+    "ramda": "0.27.2",
+    "read-pkg": "8.1.0",
     "semantic-release": "patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch",
+    "tempy": "1.0.1",
+    "tsup": "^7.2.0",
     "vitest": "0.34.6"
   },
   "husky": {

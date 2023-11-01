@@ -1,5 +1,5 @@
-const config = {
-  extends: './index.js',
+module.exports = {
+  extends: './dist/index.cjs',
   branches: ['master'],
   plugins: [
     '@semantic-release/changelog',
@@ -21,4 +21,4 @@ const config = {
     ],
   ],
 };
-export default config;
+
