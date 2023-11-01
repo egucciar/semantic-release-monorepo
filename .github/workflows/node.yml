@@ -30,6 +30,6 @@ jobs:
     - name: Run semantic-release in dry run
       if: github.event_name == 'push'
       id: dry-release
-      run: unset GITHUB_ACTIONS && yarn run semantic-release --dry-run --no-ci --branches ${HEAD_REF}
+      run: unset GITHUB_ACTIONS && yarn run semantic-release --dry-run --no-ci --branches ${REF_NAME}
       env:
-          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
