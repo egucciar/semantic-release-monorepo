@@ -20,6 +20,11 @@ jobs:
       run: corepack enable  
     - name: Install dependencies
       run: yarn install
+    - name: Set Git user
+      run: |
+        git config --global user.email "user@example.com"
+        git config --global user.name "Example User"
+
     - name: Run tests
       run: yarn test
     - name: Run semantic-release in dry run
