@@ -1,3 +1,7 @@
+// Import the necessary module(s)
+import { createRequire } from 'module'; // Bring in createRequire from module
+const newRequire = createRequire(import.meta.url); // Initialize require
+
 /**
  * Wrap each `semantic-release` lifecycle step function to inject custom logic into
  * `semantic-release`'s plugin system, augmenting its functionality without making
@@ -54,7 +58,7 @@ const wrapStep = (
           );
         }
 
-        const plugin = await plugin(pluginName); // Keep the require function here
+        const plugin = newRequire(pluginName); // Keep the require function here
         const step = plugin && plugin[stepName];
 
         if (!step) {
