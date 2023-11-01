@@ -1,7 +1,13 @@
 diff --git a/lib/get-config.js b/lib/get-config.js
-index 429577e1a4d840f3d73d53e76a2f7fc25e3d6918..d2a550168c106ce79ccddb9472a191c9f335725f 100644
+index 429577e1a4d840f3d73d53e76a2f7fc25e3d6918..9db5f72f38719ad87e309d1c98d197ef12d17a53 100644
 --- a/lib/get-config.js
 +++ b/lib/get-config.js
+@@ -1,4 +1,4 @@
+-import { dirname, resolve } from "node:path";
++import { dirname, extname } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { createRequire } from "node:module";
+ 
 @@ -35,7 +35,17 @@ export default async (context, cliOptions) => {
      options = {
        ...(await castArray(extendPaths).reduce(async (eventualResult, extendPath) => {
