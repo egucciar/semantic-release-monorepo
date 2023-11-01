@@ -19,7 +19,7 @@ jobs:
     - name: Prepare Yarn
       run: corepack enable  
     - name: Install dependencies
-      run: yarn install
+      run: yarn install --no-check-resolutions
     - name: Run tests
       run: yarn test
     - name: Run semantic-release in dry run
