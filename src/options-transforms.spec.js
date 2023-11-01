@@ -1,9 +1,5 @@
-const {
-  mapNextReleaseVersion,
-  mapLastReleaseVersionToLastReleaseGitTag,
-  mapNextReleaseVersionToNextReleaseGitTag,
-  mapCommits,
-} = require('./options-transforms');
+import { mapNextReleaseVersion, mapCommits } from './options-transforms';
+import { describe, it, expect } from 'vitest';
 
 const OPTIONS = {
   commits: [1, 2, 3, 4],

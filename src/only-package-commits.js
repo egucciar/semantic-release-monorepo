@@ -1,12 +1,14 @@
-const { identity, memoizeWith, pipeP } = require('ramda');
-const pkgUp = require('pkg-up');
-const readPkg = require('read-pkg');
-const path = require('path');
-const pLimit = require('p-limit');
-const debug = require('debug')('semantic-release:monorepo');
-const { getCommitFiles, getRoot } = require('./git-utils');
-const { mapCommits } = require('./options-transforms');
+import { identity, memoizeWith, pipeP } from 'ramda';
+import { pkgUp } from 'pkg-up';
+import { readPkg } from 'read-pkg';
+import { relative, resolve, sep, normalize } from 'path';
+import pLimit from 'p-limit';
+import { createRequire } from 'node:module';
+import { getCommitFiles, getRoot } from './git-utils';
+import { mapCommits } from './options-transforms';
 
+const newRequire = createRequire(import.meta.url);
+const debug = newRequire('debug')('semantic-release:monorepo');
 const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
 
 /**
@@ -16,7 +18,7 @@ const getPackagePath = async () => {
   const packagePath = await pkgUp();
   const gitRoot = await getRoot();
 
-  return path.relative(gitRoot, path.resolve(packagePath, '..'));
+  return relative(gitRoot, resolve(packagePath, '..'));
 };
 
 const withFiles = async commits => {
@@ -36,13 +38,13 @@ const onlyPackageCommits = async commits => {
   debug('Filter commits by package path: "%s"', packagePath);
   const commitsWithFiles = await withFiles(commits);
   // Convert package root path into segments - one for each folder
-  const packageSegments = packagePath.split(path.sep);
+  const packageSegments = packagePath.split(sep);
 
   return commitsWithFiles.filter(({ files, subject }) => {
     // Normalise paths and check if any changed files' path segments start
     // with that of the package root.
     const packageFile = files.find(file => {
-      const fileSegments = path.normalize(file).split(path.sep);
+      const fileSegments = normalize(file).split(sep);
       // Check the file is a *direct* descendent of the package folder (or the folder itself)
       return packageSegments.every(
         (packageSegment, i) => packageSegment === fileSegments[i]
@@ -89,8 +91,4 @@ const withOnlyPackageCommits = plugin => async (pluginConfig, config) => {
   );
 };
 
-module.exports = {
-  withOnlyPackageCommits,
-  onlyPackageCommits,
-  withFiles,
-};
+export { withOnlyPackageCommits, onlyPackageCommits, withFiles };

@@ -1,14 +1,14 @@
-const readPkg = require('read-pkg');
-const { compose } = require('ramda');
-const withOnlyPackageCommits = require('./only-package-commits');
-const versionToGitTag = require('./version-to-git-tag');
-const logPluginVersion = require('./log-plugin-version');
-const { wrapStep } = require('semantic-release-plugin-decorators');
+import { sync } from 'read-pkg';
+import { compose } from 'ramda';
+import { withOnlyPackageCommits } from './only-package-commits';
+import versionToGitTag from './version-to-git-tag';
+import logPluginVersion from './log-plugin-version';
+import { wrapStep } from 'semantic-release-plugin-decorators';
 
-const {
+import {
   mapNextReleaseVersion,
   withOptionsTransforms,
-} = require('./options-transforms');
+} from './options-transforms';
 
 const analyzeCommits = wrapStep(
   'analyzeCommits',
@@ -54,10 +54,10 @@ const fail = wrapStep(
   }
 );
 
-module.exports = {
+export default {
   analyzeCommits,
   generateNotes,
   success,
   fail,
-  tagFormat: readPkg.sync().name + '-v${version}',
+  tagFormat: `${sync().name}-v\${version}`,
 };

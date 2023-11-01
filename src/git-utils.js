@@ -1,12 +1,12 @@
-const execa = require('execa');
-const { pipeP, split } = require('ramda');
-const fse = require('fs-extra');
-const path = require('path');
-const tempy = require('tempy');
-const fileUrl = require('file-url');
-const gitLogParser = require('git-log-parser');
-const pEachSeries = require('p-each-series');
-const getStream = require('get-stream');
+import { execa } from 'execa';
+import { pipeP, split } from 'ramda';
+import { outputFile } from 'fs-extra';
+import { join } from 'path';
+import { temporaryDirectory } from 'tempy';
+import fileUrl from 'file-url';
+import { fields, parse } from 'git-log-parser';
+import pEachSeries from 'p-each-series';
+import { array } from 'get-stream';
 
 const git = async (args, options = {}) => {
   const { stdout } = await execa('git', args, options);
@@ -43,11 +43,11 @@ const getRoot = () => git(['rev-parse', '--show-toplevel']);
 const gitCommitsWithFiles = async commits => {
   for (const commit of commits) {
     for (const file of commit.files) {
-      let filePath = path.join(process.cwd(), file.name);
-      await fse.outputFile(
-        filePath,
-        (file.body = !'undefined' ? file.body : commit.message)
-      );
+      const filePath = join(process.cwd(), file.name);
+      if (file.body === undefined) {
+        file.body = commit.message;
+      }
+      await outputFile(filePath, file.body);
       await execa('git', ['add', filePath]);
     }
     await execa('git', [
@@ -70,7 +70,7 @@ const gitCommitsWithFiles = async commits => {
  * @return {{cwd: string, repositoryUrl: string}} The path of the repository
  */
 const initGit = async withRemote => {
-  const cwd = tempy.directory();
+  const cwd = temporaryDirectory();
   const args = withRemote
     ? ['--bare', '--initial-branch=master']
     : ['--initial-branch=master'];
@@ -117,17 +117,17 @@ const gitCommits = async (messages, execaOptions) => {
  *
  * @return {Array<Commit>} The list of parsed commits.
  */
-gitGetCommits = async from => {
-  Object.assign(gitLogParser.fields, {
+const gitGetCommits = async from => {
+  Object.assign(fields, {
     hash: 'H',
     message: 'B',
     gitTags: 'd',
     committerDate: { key: 'ci', type: Date },
   });
   return (
-    await getStream.array(
-      gitLogParser.parse(
-        { _: `${from ? from + '..' : ''}HEAD` },
+    await array(
+      parse(
+        { _: `${from ? `${from}..` : ''}HEAD` },
         { env: { ...process.env } }
       )
     )
@@ -150,7 +150,7 @@ gitGetCommits = async from => {
  * @param {String} [branch='master'] the branch to initialize.
  */
 const initBareRepo = async (repositoryUrl, branch = 'master') => {
-  const cwd = tempy.directory();
+  const cwd = directory();
   await execa('git', ['clone', '--no-hardlinks', repositoryUrl, cwd], { cwd });
   await gitCheckout(branch, true, { cwd });
   gitCommits(['Initial commit'], { cwd });
@@ -191,7 +191,7 @@ const initGitRepo = async (withRemote, branch = 'master') => {
  * @return {String} The path of the cloned repository.
  */
 const gitShallowClone = (repositoryUrl, branch = 'master', depth = 1) => {
-  const cwd = tempy.directory();
+  const cwd = directory();
 
   execa(
     'git',
@@ -228,7 +228,7 @@ const gitCheckout = async (branch, create, execaOptions) => {
   );
 };
 
-module.exports = {
+export {
   getCommitFiles,
   getRoot,
   gitCommitsWithFiles,

@@ -1,6 +1,9 @@
-const { resolve } = require('path');
-const readPkg = require('read-pkg');
-const debug = require('debug')('semantic-release:monorepo');
+import { resolve } from 'path';
+import { readPkg } from 'read-pkg';
+import { createRequire } from 'node:module';
+
+const newRequire = createRequire(import.meta.url);
+const debug = newRequire('debug')('semantic-release:monorepo');
 
 const logPluginVersion = type => plugin => async (pluginConfig, config) => {
   if (config.options.debug) {
@@ -11,4 +14,4 @@ const logPluginVersion = type => plugin => async (pluginConfig, config) => {
   return plugin(pluginConfig, config);
 };
 
-module.exports = logPluginVersion;
+export default logPluginVersion;

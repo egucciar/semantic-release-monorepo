@@ -1,5 +1,5 @@
-const { compose, composeP, lensProp } = require('ramda');
-const { overA } = require('./lens-utils');
+import { compose, composeP, lensProp } from 'ramda';
+import { overA } from './lens-utils';
 
 const commits = lensProp('commits');
 const nextRelease = lensProp('nextRelease');
@@ -16,8 +16,4 @@ const withOptionsTransforms = transforms => plugin => async (
   return plugin(pluginConfig, await composeP(...transforms)(config));
 };
 
-module.exports = {
-  mapCommits,
-  mapNextReleaseVersion,
-  withOptionsTransforms,
-};
+export { mapCommits, mapNextReleaseVersion, withOptionsTransforms };
