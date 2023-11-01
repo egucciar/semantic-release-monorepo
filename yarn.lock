@@ -4818,7 +4818,7 @@ __metadata:
     prettier: "npm:1.19.1"
     ramda: "npm:0.27.2"
     read-pkg: "npm:8.1.0"
-    semantic-release: "patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch"
+    semantic-release: "patch:semantic-release@patch%3Asemantic-release@npm%253A22.0.6%23~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch%3A%3Aversion=22.0.6&hash=94e183#~/.yarn/patches/semantic-release-patch-8951e5c7de.patch"
     semantic-release-plugin-decorators: "npm:3.0.1"
     tempy: "npm:3.1.0"
     vitest: "npm:0.34.6"
@@ -4874,7 +4874,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch":
+"semantic-release@patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch::version=22.0.6&hash=94e183":
   version: 22.0.6
   resolution: "semantic-release@patch:semantic-release@npm%3A22.0.6#~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch::version=22.0.6&hash=94e183"
   dependencies:
@@ -4909,6 +4909,44 @@ __metadata:
   bin:
     semantic-release: bin/semantic-release.js
   checksum: b149e685dad2cd650ac6f93c773c0f4405b6f56ea4e7d03f43d76ead25f46e2384b9b9bbad5b8d13b26cbfc833275e2567c33f61625dc2627d5f7bc6facc3dd1
+  languageName: node
+  linkType: hard
+
+"semantic-release@patch:semantic-release@patch%3Asemantic-release@npm%253A22.0.6%23~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch%3A%3Aversion=22.0.6&hash=94e183#~/.yarn/patches/semantic-release-patch-8951e5c7de.patch":
+  version: 22.0.6
+  resolution: "semantic-release@patch:semantic-release@patch%3Asemantic-release@npm%253A22.0.6%23~/.yarn/patches/semantic-release-npm-22.0.6-2ede9de96f.patch%3A%3Aversion=22.0.6&hash=94e183#~/.yarn/patches/semantic-release-patch-8951e5c7de.patch::version=22.0.6&hash=6deace"
+  dependencies:
+    "@semantic-release/commit-analyzer": "npm:^11.0.0"
+    "@semantic-release/error": "npm:^4.0.0"
+    "@semantic-release/github": "npm:^9.0.0"
+    "@semantic-release/npm": "npm:^11.0.0"
+    "@semantic-release/release-notes-generator": "npm:^12.0.0"
+    aggregate-error: "npm:^5.0.0"
+    cosmiconfig: "npm:^8.0.0"
+    debug: "npm:^4.0.0"
+    env-ci: "npm:^10.0.0"
+    execa: "npm:^8.0.0"
+    figures: "npm:^6.0.0"
+    find-versions: "npm:^5.1.0"
+    get-stream: "npm:^6.0.0"
+    git-log-parser: "npm:^1.2.0"
+    hook-std: "npm:^3.0.0"
+    hosted-git-info: "npm:^7.0.0"
+    lodash-es: "npm:^4.17.21"
+    marked: "npm:^9.0.0"
+    marked-terminal: "npm:^6.0.0"
+    micromatch: "npm:^4.0.2"
+    p-each-series: "npm:^3.0.0"
+    p-reduce: "npm:^3.0.0"
+    read-pkg-up: "npm:^10.0.0"
+    resolve-from: "npm:^5.0.0"
+    semver: "npm:^7.3.2"
+    semver-diff: "npm:^4.0.0"
+    signale: "npm:^1.2.1"
+    yargs: "npm:^17.5.1"
+  bin:
+    semantic-release: bin/semantic-release.js
+  checksum: c985a8a2e90a73d375f7c4f209ac71f959b7b165ce695682387ae64a02086d4985302d5247028936a482f1d5374821e1f7917a768a28a1b9599776ace12b5fec
   languageName: node
   linkType: hard
 
