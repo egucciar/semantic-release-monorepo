@@ -54,10 +54,6 @@ const fail = wrapStep(
   }
 );
 
-export default {
-  analyzeCommits,
-  generateNotes,
-  success,
-  fail,
-  tagFormat: `${sync().name}-v\${version}`,
-};
+const tagFormat = `${sync().name}-v\${version}`;
+
+export { analyzeCommits, generateNotes, success, fail, tagFormat };

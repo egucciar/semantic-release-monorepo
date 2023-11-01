@@ -1,6 +1,6 @@
 name: Node.js CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
@@ -20,9 +20,11 @@ jobs:
       run: corepack enable  
     - name: Install dependencies
       run: yarn install
-    - name: Run semantic-release-github-pr on pull request
-      if: github.event_name == 'pull_request'
-      run: yarn dlx semantic-release-github-pr --debug
-    - name: Run semantic-release on push
+    - name: Run tests
+      run: yarn test
+    - name: Run semantic-release on pr
       if: github.event_name == 'push'
-      run: yarn dlx semantic-release --debug
+      id: dry-release
+      run: unset GITHUB_ACTIONS && yarn workspaces foreach -W --no-private --topological-dev run semantic-release --dry-run --no-ci --branches ${HEAD_REF}
+      env:
+          HEAD_REF: ${{ github.head_ref }}
