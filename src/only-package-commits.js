@@ -5,7 +5,9 @@ import { relative, resolve, sep, normalize } from 'path';
 import pLimit from 'p-limit';
 import { getCommitFiles, getRoot } from './git-utils.js';
 import { mapCommits } from './options-transforms.js';
+import createDebug from 'debug';
 
+const debug = createDebug('semantic-release:monorepo');
 const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
 
 /**
@@ -32,7 +34,6 @@ const withFiles = async commits => {
 
 const onlyPackageCommits = async commits => {
   const packagePath = await getPackagePath();
-  const debug = await 'debug'('semantic-release:monorepo');
   debug('Filter commits by package path: "%s"', packagePath);
   const commitsWithFiles = await withFiles(commits);
   // Convert package root path into segments - one for each folder
