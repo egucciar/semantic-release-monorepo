@@ -1,7 +1,3 @@
-// Import the necessary module(s)
-import { createRequire } from 'module'; // Bring in createRequire from module
-const newRequire = createRequire(import.meta.url); // Initialize require
-
 /**
  * Wrap each `semantic-release` lifecycle step function to inject custom logic into
  * `semantic-release`'s plugin system, augmenting its functionality without making
@@ -58,30 +54,36 @@ const wrapStep = (
           );
         }
 
-        const plugin = newRequire(pluginName); // Keep the require function here
-        const step = plugin && plugin[stepName];
+        let plugin;
 
-        if (!step) {
-          context.logger.log(
-            `Plugin "${pluginName}" does not provide step "${stepName}"`
-          );
-          return defaultReturn;
-        }
+        import(pluginName)
+          .then(module => {
+            plugin = module.default || module;
+            const step = plugin && plugin[stepName];
 
-        context.logger.log(
-          `Start step "${stepName}" of plugin "${pluginName}"`
-        );
-        const stepResult = wrapFn(step)(
-          { ...globalPluginConfig, ...pluginConfig },
-          context
-        );
-        stepResult.then(() =>
-          context.logger.log(
-            `Completed step "${stepName}" of plugin "${pluginName}"`
-          )
-        );
-
-        return stepResult;
+            if (!step) {
+              context.logger.log(
+                `Plugin "${pluginName}" does not provide step "${stepName}"`
+              );
+              return defaultReturn;
+            }
+            context.logger.log(
+              `Start step "${stepName}" of plugin "${pluginName}"`
+            );
+            const stepResult = wrapFn(step)(
+              { ...globalPluginConfig, ...pluginConfig },
+              context
+            );
+            stepResult.then(() =>
+              context.logger.log(
+                `Completed step "${stepName}" of plugin "${pluginName}"`
+              )
+            );
+            return stepResult;
+          })
+          .catch(error => {
+            console.error(`Error importing module ${pluginName}:`, error);
+          });
       };
 
       Object.defineProperty(wrapperFn, 'name', { value: wrapperName });
