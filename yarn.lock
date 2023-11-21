@@ -5586,6 +5586,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semantic-release-monorepo-test-workspace@workspace:test-workspace":
+  version: 0.0.0-use.local
+  resolution: "semantic-release-monorepo-test-workspace@workspace:test-workspace"
+  dependencies:
+    "@semantic-release/changelog": "npm:^6.0.3"
+    "@semantic-release/commit-analyzer": "npm:^11.1.0"
+    "@semantic-release/exec": "npm:^6.0.3"
+    "@semantic-release/git": "npm:^10.0.1"
+    "@semantic-release/github": "npm:^9.2.1"
+    "@semantic-release/release-notes-generator": "npm:^12.1.0"
+    prettier: "npm:1.19.1"
+  peerDependencies:
+    semantic-release: ">=22"
+  languageName: unknown
+  linkType: soft
+
 "semantic-release-monorepo@workspace:.":
   version: 0.0.0-use.local
   resolution: "semantic-release-monorepo@workspace:."
