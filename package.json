@@ -7,9 +7,6 @@
   "files": [
     "dist"
   ],
-  "workspaces": [
-    "test-workspace"
-  ],
   "exports": {
     ".": {
       "node": "./dist/index.js",

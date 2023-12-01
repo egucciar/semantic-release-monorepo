@@ -1033,7 +1033,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/changelog@npm:6.0.3, @semantic-release/changelog@npm:^6.0.3":
+"@semantic-release/changelog@npm:6.0.3":
   version: 6.0.3
   resolution: "@semantic-release/changelog@npm:6.0.3"
   dependencies:
@@ -1047,7 +1047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/commit-analyzer@npm:11.1.0, @semantic-release/commit-analyzer@npm:^11.1.0":
+"@semantic-release/commit-analyzer@npm:11.1.0":
   version: 11.1.0
   resolution: "@semantic-release/commit-analyzer@npm:11.1.0"
   dependencies:
@@ -1095,7 +1095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/exec@npm:6.0.3, @semantic-release/exec@npm:^6.0.3":
+"@semantic-release/exec@npm:6.0.3":
   version: 6.0.3
   resolution: "@semantic-release/exec@npm:6.0.3"
   dependencies:
@@ -1111,7 +1111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/git@npm:10.0.1, @semantic-release/git@npm:^10.0.1":
+"@semantic-release/git@npm:10.0.1":
   version: 10.0.1
   resolution: "@semantic-release/git@npm:10.0.1"
   dependencies:
@@ -1129,7 +1129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:9.2.1, @semantic-release/github@npm:^9.0.0, @semantic-release/github@npm:^9.2.1":
+"@semantic-release/github@npm:9.2.1, @semantic-release/github@npm:^9.0.0":
   version: 9.2.1
   resolution: "@semantic-release/github@npm:9.2.1"
   dependencies:
@@ -1178,7 +1178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/release-notes-generator@npm:12.1.0, @semantic-release/release-notes-generator@npm:^12.1.0":
+"@semantic-release/release-notes-generator@npm:12.1.0":
   version: 12.1.0
   resolution: "@semantic-release/release-notes-generator@npm:12.1.0"
   dependencies:
@@ -5894,22 +5894,6 @@ __metadata:
   checksum: 7e3c8b2e88a1841c9671094bbaeebd94448111dd90a81a1f606f3f67708a6ec57763b3b47f06da09fc6054193e0e6709e77325415dc8422b04497a8070fa02d4
   languageName: node
   linkType: hard
-
-"semantic-release-monorepo-test-workspace@workspace:test-workspace":
-  version: 0.0.0-use.local
-  resolution: "semantic-release-monorepo-test-workspace@workspace:test-workspace"
-  dependencies:
-    "@semantic-release/changelog": "npm:^6.0.3"
-    "@semantic-release/commit-analyzer": "npm:^11.1.0"
-    "@semantic-release/exec": "npm:^6.0.3"
-    "@semantic-release/git": "npm:^10.0.1"
-    "@semantic-release/github": "npm:^9.2.1"
-    "@semantic-release/release-notes-generator": "npm:^12.1.0"
-    prettier: "npm:1.19.1"
-  peerDependencies:
-    semantic-release: ">=22"
-  languageName: unknown
-  linkType: soft
 
 "semantic-release-monorepo@workspace:.":
   version: 0.0.0-use.local
