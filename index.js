@@ -1,4 +1,4 @@
-import { readPackageSync } from 'read-pkg';
+import readPkg from 'read-pkg';
 import { compose } from 'ramda';
 import { withOnlyPackageCommits } from './src/only-package-commits.js';
 import versionToGitTag from './src/version-to-git-tag.js';
@@ -53,7 +53,7 @@ const fail = wrapStep(
   }
 );
 
-const tagFormat = `${readPackageSync().name}-v\${version}`;
+const tagFormat = `${readPkg.sync().name}-v\${version}`;
 
 //TODO Change to esm export when https://github.com/semantic-release/semantic-release/pull/3037 is merged
 module.exports = { analyzeCommits, generateNotes, success, fail, tagFormat };
