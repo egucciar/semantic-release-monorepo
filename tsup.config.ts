@@ -6,5 +6,4 @@ export default defineConfig({
   minify: false,
   splitting: false,
   format: ["cjs", "esm"],
-  external: ["debug", "execa", "p-limit", "pkg-up", "ramda", "read-pkg"],
 });

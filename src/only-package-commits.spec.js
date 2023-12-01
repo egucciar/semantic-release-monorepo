@@ -1,6 +1,6 @@
 import { gitCommitsWithFiles, initGitRepo } from './git-utils.js';
 import { onlyPackageCommits, withFiles } from './only-package-commits.js';
-import { join } from 'path';
+import path from 'path';
 import { describe, it, expect } from 'vitest';
 async function getCommitWithFileFromMessage(commits, message) {
   const commitsWithFiles = await withFiles(
@@ -47,7 +47,7 @@ describe('filter commits', () => {
     ];
     process.chdir(gitRepo.cwd);
     const commits = await gitCommitsWithFiles(commitsToCreate);
-    process.chdir(join(gitRepo.cwd, 'module1'));
+    process.chdir(path.join(gitRepo.cwd, 'module1'));
     const result = await onlyPackageCommits(commits);
 
     expect(result).toHaveLength(3);

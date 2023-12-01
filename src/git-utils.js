@@ -2,11 +2,11 @@ import execa from 'execa';
 import { pipeP, split } from 'ramda';
 import { outputFile } from 'fs-extra';
 import { join } from 'path';
-import { directory } from 'tempy';
+import tempy from 'tempy';
 import fileUrl from 'file-url';
-import { fields, parse } from 'git-log-parser';
+import gitLogParser from 'git-log-parser';
 import pEachSeries from 'p-each-series';
-import { array } from 'get-stream';
+import getStream from 'get-stream';
 
 const git = async (args, options = {}) => {
   const { stdout } = await execa('git', args, options);
@@ -70,7 +70,7 @@ const gitCommitsWithFiles = async commits => {
  * @return {{cwd: string, repositoryUrl: string}} The path of the repository
  */
 const initGit = async withRemote => {
-  const cwd = directory();
+  const cwd = tempy.directory();
   const args = withRemote
     ? ['--bare', '--initial-branch=master']
     : ['--initial-branch=master'];
@@ -118,15 +118,15 @@ const gitCommits = async (messages, execaOptions) => {
  * @return {Array<Commit>} The list of parsed commits.
  */
 const gitGetCommits = async from => {
-  Object.assign(fields, {
+  Object.assign(gitLogParser.fields, {
     hash: 'H',
     message: 'B',
     gitTags: 'd',
     committerDate: { key: 'ci', type: Date },
   });
   return (
-    await array(
-      parse(
+    await getStream.array(
+      gitLogParser.parse(
         { _: `${from ? `${from}..` : ''}HEAD` },
         { env: { ...process.env } }
       )
@@ -150,7 +150,7 @@ const gitGetCommits = async from => {
  * @param {String} [branch='master'] the branch to initialize.
  */
 const initBareRepo = async (repositoryUrl, branch = 'master') => {
-  const cwd = directory();
+  const cwd = tempy.directory();
   await execa('git', ['clone', '--no-hardlinks', repositoryUrl, cwd], { cwd });
   await gitCheckout(branch, true, { cwd });
   gitCommits(['Initial commit'], { cwd });
@@ -191,7 +191,7 @@ const initGitRepo = async (withRemote, branch = 'master') => {
  * @return {String} The path of the cloned repository.
  */
 const gitShallowClone = (repositoryUrl, branch = 'master', depth = 1) => {
-  const cwd = directory();
+  const cwd = tempy.directory();
 
   execa(
     'git',

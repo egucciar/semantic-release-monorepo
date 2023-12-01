@@ -1,11 +1,11 @@
 import { identity, memoizeWith, pipeP } from 'ramda';
 import pkgUp from 'pkg-up';
 import readPkg from 'read-pkg';
-import { relative, resolve, sep, normalize } from 'path';
+import path from 'path';
 import pLimit from 'p-limit';
+import createDebug from 'debug';
 import { getCommitFiles, getRoot } from './git-utils.js';
 import { mapCommits } from './options-transforms.js';
-import createDebug from 'debug';
 
 const debug = createDebug('semantic-release:monorepo');
 const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
@@ -17,7 +17,7 @@ const getPackagePath = async () => {
   const packagePath = await pkgUp();
   const gitRoot = await getRoot();
 
-  return relative(gitRoot, resolve(packagePath, '..'));
+  return path.relative(gitRoot, path.resolve(packagePath, '..'));
 };
 
 const withFiles = async commits => {
@@ -37,13 +37,13 @@ const onlyPackageCommits = async commits => {
   debug('Filter commits by package path: "%s"', packagePath);
   const commitsWithFiles = await withFiles(commits);
   // Convert package root path into segments - one for each folder
-  const packageSegments = packagePath.split(sep);
+  const packageSegments = packagePath.split(path.sep);
 
   return commitsWithFiles.filter(({ files, subject }) => {
     // Normalise paths and check if any changed files' path segments start
     // with that of the package root.
     const packageFile = files.find(file => {
-      const fileSegments = normalize(file).split(sep);
+      const fileSegments = path.normalize(file).split(path.sep);
       // Check the file is a *direct* descendent of the package folder (or the folder itself)
       return packageSegments.every(
         (packageSegment, i) => packageSegment === fileSegments[i]
