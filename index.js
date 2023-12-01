@@ -1,6 +1,6 @@
 import readPkg from 'read-pkg';
 import { compose } from 'ramda';
-import { withOnlyPackageCommits } from './src/only-package-commits.js';
+import withOnlyPackageCommits from './src/only-package-commits.js';
 import versionToGitTag from './src/version-to-git-tag.js';
 import logPluginVersion from './src/log-plugin-version.js';
 import {
