@@ -1,9 +1,9 @@
 import { gitCommitsWithFiles, initGitRepo } from './git-utils.js';
-import opc from './only-package-commits.js';
+import { onlyPackageCommits, withFiles } from './only-package-commits.js';
 import path from 'path';
 import { describe, it, expect } from 'vitest';
 async function getCommitWithFileFromMessage(commits, message) {
-  const commitsWithFiles = await opc.withFiles(
+  const commitsWithFiles = await withFiles(
     Array.of(commits.find(obj => obj.subject === message))
   );
   if (commitsWithFiles.length !== 0) {
@@ -27,7 +27,7 @@ describe('filter commits', () => {
     ];
     process.chdir(gitRepo.cwd);
     const commits = await gitCommitsWithFiles(commitsToCreate);
-    const result = await opc.onlyPackageCommits(commits);
+    const result = await onlyPackageCommits(commits);
     expect(result).toHaveLength(0);
   });
 
@@ -48,7 +48,7 @@ describe('filter commits', () => {
     process.chdir(gitRepo.cwd);
     const commits = await gitCommitsWithFiles(commitsToCreate);
     process.chdir(path.join(gitRepo.cwd, 'module1'));
-    const result = await opc.onlyPackageCommits(commits);
+    const result = await onlyPackageCommits(commits);
 
     expect(result).toHaveLength(3);
     expect(result).toContainEqual(
@@ -89,7 +89,7 @@ describe('filter commits', () => {
     process.chdir(gitRepo.cwd);
     const commits = await gitCommitsWithFiles(commitsToCreate);
     process.chdir(path.join(gitRepo.cwd, 'module2'));
-    const result = await opc.onlyPackageCommits(commits);
+    const result = await onlyPackageCommits(commits);
 
     expect(result).toHaveLength(2);
     expect(result).not.toContainEqual(

@@ -1,13 +1,13 @@
 import readPkg from 'read-pkg';
 import { compose } from 'ramda';
-import withOnlyPackageCommits from './src/only-package-commits.js';
-import versionToGitTag from './src/version-to-git-tag.js';
-import logPluginVersion from './src/log-plugin-version.js';
+import { withOnlyPackageCommits } from './only-package-commits.js';
+import versionToGitTag from './version-to-git-tag.js';
+import logPluginVersion from './log-plugin-version.js';
 import {
   mapNextReleaseVersion,
   withOptionsTransforms,
-} from './src/options-transforms.js';
-import wrapStep from './src/wrapStep.js';
+} from './options-transforms.js';
+import wrapStep from './wrapStep.js';
 
 const analyzeCommits = wrapStep(
   'analyzeCommits',

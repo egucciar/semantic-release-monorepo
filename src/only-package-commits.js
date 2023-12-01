@@ -90,4 +90,4 @@ const withOnlyPackageCommits = plugin => async (pluginConfig, config) => {
   );
 };
 
-module.exports = { withOnlyPackageCommits, onlyPackageCommits, withFiles };
+export { withOnlyPackageCommits, onlyPackageCommits, withFiles };
