@@ -88,7 +88,7 @@ describe('filter commits', () => {
     ];
     process.chdir(gitRepo.cwd);
     const commits = await gitCommitsWithFiles(commitsToCreate);
-    process.chdir(join(gitRepo.cwd, 'module2'));
+    process.chdir(path.join(gitRepo.cwd, 'module2'));
     const result = await onlyPackageCommits(commits);
 
     expect(result).toHaveLength(2);
