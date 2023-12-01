@@ -1,6 +1,6 @@
 import execa from 'execa';
 import { pipeP, split } from 'ramda';
-import { outputFile } from 'fs-extra';
+import fse from 'fs-extra';
 import { join } from 'path';
 import tempy from 'tempy';
 import fileUrl from 'file-url';
@@ -47,7 +47,7 @@ const gitCommitsWithFiles = async commits => {
       if (file.body === undefined) {
         file.body = commit.message;
       }
-      await outputFile(filePath, file.body);
+      await fse.outputFile(filePath, file.body);
       await execa('git', ['add', filePath]);
     }
     await execa('git', [
