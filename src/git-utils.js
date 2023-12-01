@@ -1,7 +1,7 @@
 import execa from 'execa';
 import { pipeP, split } from 'ramda';
 import fse from 'fs-extra';
-import { join } from 'path';
+import path from 'path';
 import tempy from 'tempy';
 import fileUrl from 'file-url';
 import gitLogParser from 'git-log-parser';
@@ -43,7 +43,7 @@ const getRoot = () => git(['rev-parse', '--show-toplevel']);
 const gitCommitsWithFiles = async commits => {
   for (const commit of commits) {
     for (const file of commit.files) {
-      const filePath = join(process.cwd(), file.name);
+      const filePath = path.join(process.cwd(), file.name);
       if (file.body === undefined) {
         file.body = commit.message;
       }
