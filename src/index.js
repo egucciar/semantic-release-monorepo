@@ -59,5 +59,7 @@ module.exports = {
   generateNotes,
   success,
   fail,
-  tagFormat: readPkg.sync().name + '-v${version}',
+  separator: '-',
+  tagFormat: mapNextReleaseVersion(versionToGitTag, '${separator}').nextRelease
+    .version,
 };

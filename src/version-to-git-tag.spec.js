@@ -8,5 +8,16 @@ describe('#versionToGitTag', () => {
       expect(await versionToGitTag(null)).toBe(null);
       done();
     });
-  });
+  }),
+    describe('if passed a truly version', () => {
+      it('returns a correct version', async done => {
+        expect(await versionToGitTag('1.2.3')).toBe(
+          'semantic-release-monorepo-v1.2.3'
+        );
+        expect(await versionToGitTag('1.2.3', '/')).toBe(
+          'semantic-release-monorepo/v1.2.3'
+        );
+        done();
+      });
+    });
 });
