@@ -1,6 +1,6 @@
 {
   "name": "semantic-release-monorepo",
-  "version": "8.0.4",
+  "version": "8.0.5",
   "description": "Plugins for `semantic-release` allowing it to be used with a monorepo.",
   "main": "src/index.js",
   "type": "module",
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "semantic-release": ">=20.0.0"
+    "semantic-release": "~20.0.0"
   },
   "dependencies": {
     "debug": "^4.3.4",
@@ -27,14 +27,14 @@
     "p-limit": "^3.1.0",
     "pkg-up": "^3.1.0",
     "ramda": "^0.27.2",
-    "read-pkg": "^5.2.0",
-    "semantic-release-plugin-decorators": "github:mjsorribas/semantic-release-monorepo",
-    "tempy": "1.0.1"
+    "read-pkg": "^6.0.0",
+    "semantic-release-plugin-decorators": "github:mjsorribas/semantic-release-plugin-decorators",
+    "tempy": "2.0.0"
   },
   "devDependencies": {
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^3.2.4",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
     "vitest": "0.34.6"
   },
   "husky": {
