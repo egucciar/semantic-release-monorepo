@@ -1,4 +1,4 @@
-import execa from 'execa';
+import {execa}  from 'execa';
 import { pipeP, split } from 'ramda';
 import fse from 'fs-extra';
 import path from 'path';

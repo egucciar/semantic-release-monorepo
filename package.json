@@ -17,17 +17,17 @@
     "semantic-release": "~20.0.0"
   },
   "dependencies": {
-    "debug": "^4.3.4",
-    "execa": "^5.1.1",
+    "debug": "^4.3.6",
+    "execa": "^6.0.0",
     "file-url": "^3.0.0",
     "fs-extra": "^10.0.1",
     "get-stream": "^6.0.1",
-    "git-log-parser": "^1.2.0",
+    "git-log-parser": "^1.2.1",
     "p-each-series": "^2.1.0",
     "p-limit": "^3.1.0",
     "pkg-up": "^3.1.0",
     "ramda": "^0.27.2",
-    "read-pkg": "^6.0.0",
+    "read-pkg": "^8.0.0",
     "semantic-release-plugin-decorators": "github:mjsorribas/semantic-release-plugin-decorators",
     "tempy": "2.0.0"
   },
