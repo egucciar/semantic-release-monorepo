@@ -14,6 +14,12 @@ async function getCommitWithFileFromMessage(commits, message) {
 }
 
 describe('filter commits', () => {
+  it('should handle undefined commits gracefully', async () => {
+    const result = await onlyPackageCommits(undefined);
+
+    expect(result).toEqual([]);
+  });
+
   it('should filter 0 commits (no root folder support) ', async () => {
     const gitRepo = await initGitRepo(false);
     const commitsToCreate = [

@@ -21,6 +21,10 @@ const getPackagePath = async () => {
 };
 
 const withFiles = async commits => {
+  if (!Array.isArray(commits)) {
+    return [];
+  }
+
   const limit = pLimit(Number(process.env.SRM_MAX_THREADS) || 500);
   return Promise.all(
     commits.map(commit =>
