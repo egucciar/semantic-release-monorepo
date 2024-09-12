@@ -2,6 +2,14 @@
   "name": "semantic-release-monorepo",
   "version": "0.0.0-development",
   "description": "Plugins for `semantic-release` allowing it to be used with a monorepo.",
+  "homepage": "https://github.com/pmowrer/semantic-release-monorepo#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmowrer/semantic-release-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pmowrer/semantic-release-monorepo/issues"
+  },
   "main": "src/index.js",
   "type": "module",
   "files": [
