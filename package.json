@@ -46,5 +46,9 @@
     "*.js": [
       "yarn format"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmowrer/semantic-release-monorepo.git"
   }
 }
